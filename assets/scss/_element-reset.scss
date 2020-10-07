@@ -1,0 +1,66 @@
+//tooltip popper
+.el-tooltip__popper {
+  border-color: theme('colors.gray.250') !important;
+}
+
+//toggle
+.el-switch {
+  .el-switch {
+    &__label * {
+      @apply text-s font-light;
+    }
+
+    &__core {
+      box-shadow: inset 0 0 2px 0 rgba(0,0,0,.35);
+      height: 22px;
+      border-radius: 15px;
+
+      &::after {
+        @apply bg-blue-200;
+        top: 2px;
+        left: 2px;
+      }
+    }
+  }
+
+  &__label.is-active {
+    @apply text-gray-900;
+  }
+}
+
+.el-switch.is-checked .el-switch__core::after {
+  @apply -ml-4.5;
+}
+
+// select
+.el-select {
+  .el-input {
+    &--suffix.is-focus .el-input__inner {
+      @apply border-gray-250 rounded-xl rounded-b-none;
+    }
+    &--suffix {
+      @apply text-s;
+      .el-input__inner {
+        @apply rounded-full border-gray-250 shadow-tiny;
+      }
+    }
+  }
+}
+
+.el-select-dropdown.el-popper {
+  @apply mt-0;
+  .popper {
+    &__arrow {
+      @apply hidden;
+    }
+  }
+}
+.el-select-dropdown {
+  @apply border-gray-250 shadow-tiny rounded-xl rounded-t-none;
+  &__list {
+    @apply pb-3;
+  }
+  &__item {
+    @apply text-s;
+  }
+}

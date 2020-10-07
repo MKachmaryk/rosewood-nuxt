@@ -1,0 +1,10 @@
+.rosewood-sidebar-subitem-label {
+  @apply uppercase px-3.75 text-s font-bold text-gray-900;
+}
+
+//checkmark
+.icon-checkmark {
+  @apply flex items-center justify-center rounded-full text-danger absolute shadow-tiny;
+  width: 14px;
+  height: 14px;
+}
