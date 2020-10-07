@@ -73,6 +73,8 @@
             <div class="my-px">
               <SelectModule
                 v-model="selectedDevelopment"
+                class="w-45"
+                popper-class="w-45 truncate"
                 :options="developmentSelectorOptionsList"
                 placeholder="Placeholder"
               />

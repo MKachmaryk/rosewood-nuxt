@@ -100,20 +100,6 @@ export default class SelectGeo extends Vue {
 
 <style lang="scss">
   .select-geo-module {
-    .el-select.select-module {
-      .el-input {
-        &--suffix {
-          .el-input__inner {
-            @apply leading-none h-8;
-          }
-        }
-
-        &__icon {
-          @apply leading-none;
-        }
-      }
-    }
-
     &__chosen {
       &:hover {
         @apply border border-gray-250 border-solid bg-white rounded-full py-2 shadow-tiny leading-none flex items-center;

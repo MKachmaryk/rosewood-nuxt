@@ -83,6 +83,13 @@
         placeholder="Select City"
       />
 
+      <CascaderGeoModule
+        v-model="selectedOptions"
+        class="px-3.75 mb-6"
+        :selected.sync="selected"
+        :options="options"
+      />
+
       <!-- T O G G L E  L A B E L -->
       <h2 class="rosewood-sidebar-subitem-label pb-2">
         view data by
@@ -148,6 +155,8 @@ import ToggleModule from '@/components/form-controls/ToggleModule.vue'
 import SelectModule from '@/components/form-controls/SelectModule.vue'
 import SelectItemsListModule from '@/components/Geographies/SelectItemsListModule.vue'
 import SelectGeoModule from '@/components/Geographies/SelectGeoModule.vue'
+import CascaderModule from '@/components/form-controls/CascaderModule.vue'
+import CascaderGeoModule from '@/components/Geographies/CascaderGeoModule.vue'
 
 import { FilterItem } from '@/interfaces'
 
@@ -156,6 +165,8 @@ import { votersModule } from '@/store'
 @Component({
   name: 'app-sidebar',
   components: {
+    CascaderModule,
+    CascaderGeoModule,
     ToggleModule,
     SelectModule,
     SelectItemsListModule,
@@ -190,6 +201,55 @@ export default class AppSidebar extends Vue {
   ]
 
   search = ''
+
+  selectedOptions = []
+
+  selected = false
+
+  options = [
+    {
+      value: 'state',
+      label: 'State',
+      children: [
+        {
+          value: 'state-1-1',
+          label: 'State 1 1'
+        },
+        {
+          value: 'state-1-2',
+          label: 'State 1 2'
+        }
+      ]
+    },
+    {
+      value: 'city',
+      label: 'City',
+      children: [
+        {
+          value: 'city-2-1',
+          label: 'City 2 1'
+        },
+        {
+          value: 'city-2-2',
+          label: 'City 2 2'
+        }
+      ]
+    },
+    {
+      value: 'zip',
+      label: 'Zip',
+      children: [
+        {
+          value: 'zip-3-1',
+          label: 'zip 3 1'
+        },
+        {
+          value: 'zip-3-2',
+          label: 'Zip 3 2'
+        }
+      ]
+    }
+  ]
 
   state = {
     chosen: '',
@@ -353,6 +413,10 @@ export default class AppSidebar extends Vue {
   ]
 
   /* COMPUTED */
+  click () {
+    console.log(this.selectedOptions)
+  }
+
   get isGeographies () {
     return votersModule.isGeographies
   }

@@ -39,6 +39,7 @@ module.exports = {
         tiny: '0px 1px 1px 0px rgba(0,0,0,.35)'
       },
       spacing: {
+        2.5: '0.625rem',
         3.75: '0.9375rem',
         4.5: '1.125rem',
         45: '11.25rem'

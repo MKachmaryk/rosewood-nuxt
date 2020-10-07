@@ -32,8 +32,8 @@
   @apply -ml-4.5;
 }
 
-// select
-.el-select {
+// select and cascader
+.el-select, .el-cascader {
   .el-input {
     &--suffix.is-focus .el-input__inner {
       @apply border-gray-250 rounded-xl rounded-b-none;
@@ -41,12 +41,17 @@
     &--suffix {
       @apply text-s;
       .el-input__inner {
-        @apply rounded-full border-gray-250 shadow-tiny;
+        @apply rounded-full border-gray-250 shadow-tiny leading-none h-8;
       }
+    }
+
+    &__icon {
+      @apply leading-none hidden;
     }
   }
 }
 
+// select dropdown
 .el-select-dropdown.el-popper {
   @apply mt-0;
   .popper {
@@ -64,3 +69,33 @@
     @apply text-s;
   }
 }
+
+// cascader
+.el-cascader {
+  @apply leading-none;
+}
+
+// cascader dropdown
+.el-popper.el-cascader {
+  &__dropdown {
+    @apply mt-0 rounded-xl rounded-t-none shadow-tiny border-gray-250;
+    .popper__arrow {
+      @apply hidden;
+    }
+
+    .el-cascader-panel {
+      @apply block;
+      .el-cascader-menu {
+        @apply border-r-0 border-b border-gray-250;
+        li {
+          i {
+            @apply hidden;
+          }
+        }
+        &:last-child {
+          @apply border-b-0;
+        }
+      }
+    }
+  }
+};

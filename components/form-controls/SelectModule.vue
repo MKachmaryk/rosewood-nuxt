@@ -3,7 +3,7 @@
     class="select-module"
     :value="value"
     :placeholder="placeholder"
-    popper-class="-mt-4"
+    :popper-class="popperClassModule"
     :popper-append-to-body="popperAppendToBody"
     @change="$emit('input', $event)"
   >
@@ -27,6 +27,11 @@ export default class SelectModule extends Vue {
   @Prop() value!: string
   @Prop() options!: { label: string, value: string }[]
   @Prop({ default: true }) popperAppendToBody?: boolean
+  @Prop() popperClass?: string
+
+  get popperClassModule () {
+    return `-mt-4 ${this.popperClass}`
+  }
 }
 </script>
 
