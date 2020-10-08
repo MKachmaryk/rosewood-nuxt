@@ -38,9 +38,10 @@ export default class Index extends Vue {
   /* DATA */
   isSidebarOpened = false
 
-  /* COMPUTED */
-  get isMobileScreen () {
-    return ['xs', 'sm'].includes(this.$mq)
+  head () {
+    return {
+      title: 'rosewood'
+    }
   }
 
   /* HOOKS */
@@ -54,6 +55,11 @@ export default class Index extends Vue {
   @Watch('$mq')
   on$mqChanged (newVal: string) {
     this.isSidebarOpened = !(newVal === 'xs' || newVal === 'sm')
+  }
+
+  /* COMPUTED */
+  get isMobileScreen () {
+    return ['xs', 'sm'].includes(this.$mq)
   }
 }
 </script>

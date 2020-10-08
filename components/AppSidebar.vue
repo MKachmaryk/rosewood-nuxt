@@ -226,16 +226,62 @@ export default class AppSidebar extends Vue {
           ]
         },
         {
-          value: 'city',
-          label: 'City',
+          value: 'st house',
+          label: 'St House',
           children: [
             {
-              value: 'city-2-1',
-              label: 'City 2 1'
+              value: 'il house 001',
+              label: 'IL House 001'
             },
             {
-              value: 'city-2-2',
-              label: 'City 2 2'
+              value: 'il house 002',
+              label: 'IL House 002'
+            },
+            {
+              value: 'il house 003',
+              label: 'IL House 003'
+            },
+            {
+              value: 'il house 004',
+              label: 'IL House 004'
+            },
+            {
+              value: 'il house 005',
+              label: 'IL House 005'
+            },
+            {
+              value: 'il house 006',
+              label: 'IL House 006'
+            }
+          ]
+        },
+        {
+          value: 'st senate',
+          label: 'St Senate',
+          children: [
+            {
+              value: 'il senate 001',
+              label: 'IL Senate 001'
+            },
+            {
+              value: 'il senate 002',
+              label: 'IL Senate 002'
+            },
+            {
+              value: 'il senate 003',
+              label: 'IL Senate 003'
+            },
+            {
+              value: 'il senate 004',
+              label: 'IL Senate 004'
+            },
+            {
+              value: 'il senate 005',
+              label: 'IL Senate 005'
+            },
+            {
+              value: 'il senate 006',
+              label: 'IL Senate 006'
             }
           ]
         },
@@ -244,12 +290,58 @@ export default class AppSidebar extends Vue {
           label: 'Zip',
           children: [
             {
-              value: 'zip-3-1',
-              label: 'zip 3 1'
+              value: '60001',
+              label: '60001'
             },
             {
-              value: 'zip-3-2',
-              label: 'Zip 3 2'
+              value: '60002',
+              label: '60002'
+            },
+            {
+              value: '60003',
+              label: '60003'
+            },
+            {
+              value: '60004',
+              label: '60004'
+            },
+            {
+              value: '60005',
+              label: '60005'
+            },
+            {
+              value: '60006',
+              label: '60006'
+            }
+          ]
+        },
+        {
+          value: 'county',
+          label: 'County',
+          children: [
+            {
+              value: 'il county 001',
+              label: 'IL County 001'
+            },
+            {
+              value: 'il county 002',
+              label: 'IL County 002'
+            },
+            {
+              value: 'il county 003',
+              label: 'IL County 003'
+            },
+            {
+              value: 'il county 004',
+              label: 'IL County 004'
+            },
+            {
+              value: 'il county 005',
+              label: 'IL County 005'
+            },
+            {
+              value: 'il county 006',
+              label: 'IL County 006'
             }
           ]
         }
@@ -263,8 +355,8 @@ export default class AppSidebar extends Vue {
           label: 'State',
           children: [
             {
-              value: 'state-1-1',
-              label: 'State 1 1'
+              value: 'illinois',
+              label: 'Illinois'
             },
             {
               value: 'state-1-2',
@@ -273,16 +365,62 @@ export default class AppSidebar extends Vue {
           ]
         },
         {
-          value: 'city',
-          label: 'City',
+          value: 'st house',
+          label: 'St House',
           children: [
             {
-              value: 'city-2-1',
-              label: 'City 2 1'
+              value: 'il house 001',
+              label: 'IL House 001'
             },
             {
-              value: 'city-2-2',
-              label: 'City 2 2'
+              value: 'il house 002',
+              label: 'IL House 002'
+            },
+            {
+              value: 'il house 003',
+              label: 'IL House 003'
+            },
+            {
+              value: 'il house 004',
+              label: 'IL House 004'
+            },
+            {
+              value: 'il house 005',
+              label: 'IL House 005'
+            },
+            {
+              value: 'il house 006',
+              label: 'IL House 006'
+            }
+          ]
+        },
+        {
+          value: 'st senate',
+          label: 'St Senate',
+          children: [
+            {
+              value: 'il senate 001',
+              label: 'IL Senate 001'
+            },
+            {
+              value: 'il senate 002',
+              label: 'IL Senate 002'
+            },
+            {
+              value: 'il senate 003',
+              label: 'IL Senate 003'
+            },
+            {
+              value: 'il senate 004',
+              label: 'IL Senate 004'
+            },
+            {
+              value: 'il senate 005',
+              label: 'IL Senate 005'
+            },
+            {
+              value: 'il senate 006',
+              label: 'IL Senate 006'
             }
           ]
         },
@@ -291,12 +429,58 @@ export default class AppSidebar extends Vue {
           label: 'Zip',
           children: [
             {
-              value: 'zip-3-1',
-              label: 'zip 3 1'
+              value: '60001',
+              label: '60001'
             },
             {
-              value: 'zip-3-2',
-              label: 'Zip 3 2'
+              value: '60002',
+              label: '60002'
+            },
+            {
+              value: '60003',
+              label: '60003'
+            },
+            {
+              value: '60004',
+              label: '60004'
+            },
+            {
+              value: '60005',
+              label: '60005'
+            },
+            {
+              value: '60006',
+              label: '60006'
+            }
+          ]
+        },
+        {
+          value: 'county',
+          label: 'County',
+          children: [
+            {
+              value: 'il county 001',
+              label: 'IL County 001'
+            },
+            {
+              value: 'il county 002',
+              label: 'IL County 002'
+            },
+            {
+              value: 'il county 003',
+              label: 'IL County 003'
+            },
+            {
+              value: 'il county 004',
+              label: 'IL County 004'
+            },
+            {
+              value: 'il county 005',
+              label: 'IL County 005'
+            },
+            {
+              value: 'il county 006',
+              label: 'IL County 006'
             }
           ]
         }
