@@ -32,8 +32,8 @@
   @apply -ml-4.5;
 }
 
-// select and cascader
-.el-select, .el-cascader {
+// select
+.el-select {
   .el-input {
     &--suffix.is-focus .el-input__inner {
       @apply border-gray-250 rounded-xl rounded-b-none;
@@ -46,7 +46,7 @@
     }
 
     &__icon {
-      @apply leading-none hidden;
+      @apply hidden;
     }
   }
 }
@@ -72,28 +72,46 @@
 
 // cascader
 .el-cascader {
-  @apply leading-none;
+  @apply leading-none invisible;
+  .el-input {
+    &--suffix {
+      @apply text-s;
+      .el-input__inner {
+        @apply hidden;
+      }
+    }
+
+    &__icon {
+      @apply hidden;
+    }
+  }
 }
 
 // cascader dropdown
 .el-popper.el-cascader {
   &__dropdown {
-    @apply mt-0 rounded-xl rounded-t-none shadow-tiny border-gray-250;
+    @apply rounded-lg shadow-tiny border-gray-250 -mt-14.25;
     .popper__arrow {
       @apply hidden;
     }
-
     .el-cascader-panel {
       @apply block;
       .el-cascader-menu {
         @apply border-r-0 border-b border-gray-250;
-        li {
-          i {
-            @apply hidden;
+        .el-cascader-node {
+          @apply text-s text-gray-900;
+          &-node {
+            &__label {
+              @apply px-0;
+            }
           }
         }
         &:last-child {
           @apply border-b-0;
+        }
+
+        i {
+          @apply hidden;
         }
       }
     }

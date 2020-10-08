@@ -1,36 +1,55 @@
 <template>
-  <div>
+  <div class="cascader-geo-module relative">
     <!-- C H O S E N  G E O -->
     <div
-      v-show="!selected"
-      class="flex items-center justify-between py-4 cursor-pointer"
+      class="flex items-center justify-between py-2 cursor-pointer rounded-lg cascader-geo-module__chosen-geo border border-transparent"
+      :class="isValueChosen ? 'hover:bg-white hover:shadow-tiny hover:border-solid hover:border hover:border-gray-250' : 'bg-white shadow-tiny border border-gray-250'"
       @click="openCascaderModule"
     >
-      <!-- C H E C K  M A R K -->
-      <i
-        class="icon-checkmark el-icon-error"
-      />
+      <template v-if="!isValueChosen">
+        <p class="pl-5 text-s">
+          {{ placeholder }}
+        </p>
+      </template>
 
-      <span
-        class="ml-5 text-s font-light capitalize w-20"
-      >
-        {{ value[0] }}
-      </span>
+      <template v-else>
+        <!-- C H E C K  M A R K -->
+        <i
+          class="icon-checkmark el-icon-error"
+        />
 
-      <span class="text-s font-light capitalize w-45">
-        {{ value[1] }}
-      </span>
+        <span
+          class="ml-5 text-s font-light capitalize w-20"
+        >
+          {{ value[0] }}
+        </span>
+
+        <span class="text-s capitalize w-45 pl-4 font-bold">
+          {{ value[1] }}
+        </span>
+      </template>
     </div>
 
     <!-- C A S C A D E  M O D U L E -->
     <CascaderModule
-      v-show="selected"
       ref="cascaderModule"
       class="w-full"
       :value="value"
       :options="options"
       @input="selectGeo($event)"
     />
+
+    <!-- C A S C A D E R  G E O  M O D U L E  D I V I D E R -->
+    <div
+      v-if="isDivider"
+      class="cascader-geo-module__divider"
+    >
+      <span
+        v-for="item in 12"
+        :key="item"
+        class="w-px h-px block bg-gray-850 mb-px"
+      />
+    </div>
   </div>
 </template>
 
@@ -54,19 +73,10 @@ export default class CascaderGeoModule extends Vue {
   @Prop() options!: any[]
   @Prop() value!: string[]
   @Prop() selected!: boolean
-
-  /* HOOKS */
-  created () {
-    if (process.client) {
-      const self = this
-      window.addEventListener('click', function (e) {
-        // close dropdown when clicked outside
-        if (!self.$el.contains((e as any).target)) {
-          self.$emit('update:selected', false)
-        }
-      })
-    }
-  }
+  @Prop({ default: false }) isDivider?: boolean
+  @Prop({ default: 'placeholder' }) placeholder?: string
+  @Prop() cascaderGeoItemIndex!: number
+  @Prop() filteringGeoListLength!: number
 
   /* COMPUTED */
   get isValueChosen () {
@@ -76,14 +86,36 @@ export default class CascaderGeoModule extends Vue {
   /* METHODS */
   selectGeo (selectedValue: string[]) {
     this.$emit('input', selectedValue)
-    this.$emit('update:selected', !this.selected)
+
+    // add new geo item
+    if (this.cascaderGeoItemIndex === this.filteringGeoListLength - 1 && this.filteringGeoListLength !== 5) {
+      const newGeoItem = {
+        selectedOptions: [],
+        options: this.options
+      }
+      this.$emit('item-click', newGeoItem)
+    }
   }
 
   openCascaderModule () {
-    this.$emit('update:selected', !this.selected)
-    this.$nextTick(() => {
-      this.$refs.cascaderModule.$children[0].$el.click()
-    })
+    this.$refs.cascaderModule.$children[0].$el.click()
   }
 }
 </script>
+
+<style lang="scss">
+  .cascader-geo-module {
+    &__chosen-geo {
+      &:hover {
+        i {
+          @apply hidden;
+        }
+      }
+    }
+
+    &__divider {
+      @apply absolute bottom-0;
+      left: 48px;
+    }
+  }
+</style>

@@ -55,39 +55,46 @@
       </h2>
 
       <!-- G E O  F I L T E R I N G  S T A T E -->
-      <SelectGeoModule
-        v-model="state.chosen"
-        :options-list="state.list"
-        :selected.sync="state.selected"
-        geo-place="state"
-        placeholder="Select State"
-      />
+      <!--      <SelectGeoModule-->
+      <!--        v-model="state.chosen"-->
+      <!--        :options-list="state.list"-->
+      <!--        :selected.sync="state.selected"-->
+      <!--        geo-place="state"-->
+      <!--        placeholder="Select State"-->
+      <!--      />-->
 
       <!-- G E O  F I L T E R I N G  C O U N T Y -->
-      <SelectGeoModule
-        v-model="county.chosen"
-        :options-list="county.list"
-        :selected.sync="county.selected"
-        geo-place="county"
-        placeholder="Select County"
-      />
+      <!--      <SelectGeoModule-->
+      <!--        v-model="county.chosen"-->
+      <!--        :options-list="county.list"-->
+      <!--        :selected.sync="county.selected"-->
+      <!--        geo-place="county"-->
+      <!--        placeholder="Select County"-->
+      <!--      />-->
 
       <!-- G E O  F I L T E R I N G  C I T Y -->
-      <SelectGeoModule
-        v-model="city.chosen"
-        :options-list="city.list"
-        :selected.sync="city.selected"
-        :is-divider="false"
-        class="mb-4"
-        geo-place="city"
-        placeholder="Select City"
-      />
+      <!--      <SelectGeoModule-->
+      <!--        v-model="city.chosen"-->
+      <!--        :options-list="city.list"-->
+      <!--        :selected.sync="city.selected"-->
+      <!--        :is-divider="true"-->
+      <!--        class="mb-4"-->
+      <!--        geo-place="city"-->
+      <!--        placeholder="Select City"-->
+      <!--      />-->
 
+      <!-- G E O  F I L T E R I N G  S T A T E -->
       <CascaderGeoModule
-        v-model="selectedOptions"
-        class="px-3.75 mb-6"
-        :selected.sync="selected"
-        :options="options"
+        v-for="(geoItem, i) in filteringGeoList"
+        :key="`filtering-geo-item-${i}`"
+        v-model="geoItem.selectedOptions"
+        class="px-3.75"
+        placeholder="Please select geo"
+        :options="geoItem.options"
+        :cascader-geo-item-index="i"
+        :filtering-geo-list-length="filteringGeoList.length"
+        :is-divider="filteringGeoList.length - 1 !== i"
+        @item-click="addNewGeoItem"
       />
 
       <!-- T O G G L E  L A B E L -->
@@ -155,17 +162,15 @@ import ToggleModule from '@/components/form-controls/ToggleModule.vue'
 import SelectModule from '@/components/form-controls/SelectModule.vue'
 import SelectItemsListModule from '@/components/Geographies/SelectItemsListModule.vue'
 import SelectGeoModule from '@/components/Geographies/SelectGeoModule.vue'
-import CascaderModule from '@/components/form-controls/CascaderModule.vue'
 import CascaderGeoModule from '@/components/Geographies/CascaderGeoModule.vue'
 
-import { FilterItem } from '@/interfaces'
-
 import { votersModule } from '@/store'
+
+import { FilterGeo, FilterItem } from '@/interfaces'
 
 @Component({
   name: 'app-sidebar',
   components: {
-    CascaderModule,
     CascaderGeoModule,
     ToggleModule,
     SelectModule,
@@ -183,9 +188,9 @@ export default class AppSidebar extends Vue {
 
   /* HOOKS */
   created () {
-    this.state.chosen = this.state.list[0].value
-    this.county.chosen = this.county.list[0].value
-    this.city.chosen = this.city.list[0].value
+    // this.state.chosen = this.state.list[0].value
+    // this.county.chosen = this.county.list[0].value
+    // this.city.chosen = this.city.list[0].value
   }
 
   /* DATA */
@@ -202,50 +207,98 @@ export default class AppSidebar extends Vue {
 
   search = ''
 
-  selectedOptions = []
-
-  selected = false
-
-  options = [
+  filteringGeoList: FilterGeo[] = [
     {
-      value: 'state',
-      label: 'State',
-      children: [
+      selectedOptions: ['state', 'illinois'],
+      options: [
         {
-          value: 'state-1-1',
-          label: 'State 1 1'
+          value: 'state',
+          label: 'State',
+          children: [
+            {
+              value: 'illinois',
+              label: 'Illinois'
+            },
+            {
+              value: 'state-1-2',
+              label: 'State 1 2'
+            }
+          ]
         },
         {
-          value: 'state-1-2',
-          label: 'State 1 2'
+          value: 'city',
+          label: 'City',
+          children: [
+            {
+              value: 'city-2-1',
+              label: 'City 2 1'
+            },
+            {
+              value: 'city-2-2',
+              label: 'City 2 2'
+            }
+          ]
+        },
+        {
+          value: 'zip',
+          label: 'Zip',
+          children: [
+            {
+              value: 'zip-3-1',
+              label: 'zip 3 1'
+            },
+            {
+              value: 'zip-3-2',
+              label: 'Zip 3 2'
+            }
+          ]
         }
       ]
     },
     {
-      value: 'city',
-      label: 'City',
-      children: [
+      selectedOptions: [],
+      options: [
         {
-          value: 'city-2-1',
-          label: 'City 2 1'
+          value: 'state',
+          label: 'State',
+          children: [
+            {
+              value: 'state-1-1',
+              label: 'State 1 1'
+            },
+            {
+              value: 'state-1-2',
+              label: 'State 1 2'
+            }
+          ]
         },
         {
-          value: 'city-2-2',
-          label: 'City 2 2'
-        }
-      ]
-    },
-    {
-      value: 'zip',
-      label: 'Zip',
-      children: [
-        {
-          value: 'zip-3-1',
-          label: 'zip 3 1'
+          value: 'city',
+          label: 'City',
+          children: [
+            {
+              value: 'city-2-1',
+              label: 'City 2 1'
+            },
+            {
+              value: 'city-2-2',
+              label: 'City 2 2'
+            }
+          ]
         },
         {
-          value: 'zip-3-2',
-          label: 'Zip 3 2'
+          value: 'zip',
+          label: 'Zip',
+          children: [
+            {
+              value: 'zip-3-1',
+              label: 'zip 3 1'
+            },
+            {
+              value: 'zip-3-2',
+              label: 'Zip 3 2'
+            }
+          ]
         }
       ]
     }
@@ -413,10 +466,6 @@ export default class AppSidebar extends Vue {
   ]
 
   /* COMPUTED */
-  click () {
-    console.log(this.selectedOptions)
-  }
-
   get isGeographies () {
     return votersModule.isGeographies
   }
@@ -436,6 +485,10 @@ export default class AppSidebar extends Vue {
 
   toggleChange (isGeography: boolean) {
     votersModule.setGeography(isGeography)
+  }
+
+  addNewGeoItem (newGeoItem: FilterGeo) {
+    this.filteringGeoList.push(newGeoItem)
   }
 }
 </script>

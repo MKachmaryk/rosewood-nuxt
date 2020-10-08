@@ -2,8 +2,7 @@
   <el-cascader
     v-model="selectedOptions"
     :options="options"
-    :popper-append-to-body="false"
-    placeholder="Please select some geo"
+    :placeholder="placeholder"
     @change="onCascaderChange"
     @visible-change="visibleChange"
   />
@@ -18,6 +17,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 export default class CascaderModule extends Vue {
   @Prop() options!: any[]
   @Prop() value!: string[]
+  @Prop({ default: 'placeholder' }) placeholder?: string
 
   /* DATA */
   selectedOptions = []
@@ -29,9 +29,14 @@ export default class CascaderModule extends Vue {
 
   visibleChange (isVisible: boolean) {
     if (isVisible) {
-      const elCascader = document.querySelector('.el-cascader') as HTMLElement
-      const elCascaderDropdown = document.querySelector('.el-cascader__dropdown') as HTMLElement
-      elCascaderDropdown.style.width = elCascader.offsetWidth + 'px'
+      this.$nextTick(() => {
+        const elCascader = document.querySelector('.el-cascader div.is-focus') as HTMLElement
+        const elCascaderDropdowns = document.querySelectorAll('.el-cascader__dropdown') as NodeList
+
+        elCascaderDropdowns.forEach((dropdown) => {
+          (dropdown as HTMLElement).style.width = elCascader.offsetWidth + 'px'
+        })
+      })
     }
   }
 }
