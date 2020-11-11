@@ -3,7 +3,24 @@
   border-color: theme('colors.gray.250') !important;
 }
 
-//toggle
+.el-tooltip__popper[x-placement^=top] .popper__arrow::after {
+  border-top-color: theme('colors.white') !important;
+}
+
+.el-tooltip__popper[x-placement^=top] .popper__arrow {
+  border-top-color: theme('colors.gray.250') !important;
+}
+
+.el-tooltip__popper[x-placement^=bottom-start] .popper__arrow::after {
+  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-bottom-color: theme('colors.white') !important;
+}
+
+.el-tooltip__popper[x-placement^=bottom-start] .popper__arrow {
+  border-bottom-color: theme('colors.gray.250') !important;
+}
+
+  //toggle
 .el-switch {
   .el-switch {
     &__label * {
@@ -117,3 +134,14 @@
     }
   }
 };
+
+// sub-menu
+.el-submenu {
+  &__title {
+    padding-left: 0.9375rem !important;
+    padding-right: 0.9375rem !important;
+    i.el-icon-arrow-down {
+      @apply hidden;
+    }
+  }
+}

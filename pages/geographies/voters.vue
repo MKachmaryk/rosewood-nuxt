@@ -40,9 +40,9 @@
     <!-- V O T E R S  L I S T -->
     <div class="border rounded border-gray-300">
       <el-table
-        :data="tableData"
+        :data="sortedTableData"
         style="width: 100%"
-        :row-class-name="'cursor-pointer h-10'"
+        row-class-name="cursor-pointer h-10"
       >
         <!-- N A M E  C O L U M N -->
         <el-table-column
@@ -55,8 +55,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black">
               <span>{{ column.label }}</span>
-              <span class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -92,8 +98,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black">
               <span>{{ column.label }}</span>
-              <span class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -110,9 +122,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
               <span>{{ column.label }}</span>
-              <span class="flex items-center p-1 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border w-4.5 h-4.5 relative shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold transform rotate-90 absolute arrow-left" />
-                <i class="el-icon-bottom font-bold transform -rotate-90 absolute arrow-right" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -128,9 +145,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
               <span>{{ column.label }}</span>
-              <span class="flex items-center p-1 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border w-4.5 h-4.5 relative shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold transform rotate-90 absolute arrow-left" />
-                <i class="el-icon-bottom font-bold transform -rotate-90 absolute arrow-right" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -154,7 +176,7 @@
                 effect="light"
                 placement="bottom"
                 :visible-arrow="false"
-                :popper-class="'px-4 pb-2 pt-2 shadow-tiny'"
+                popper-class="px-4 pb-2 pt-2 shadow-tiny"
               >
                 <div slot="content">
                   <!-- V O T E R  I N F O  G E N E R A L -->
@@ -254,9 +276,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
               <span>{{ column.label }}</span>
-              <span class="flex items-center p-1 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border w-4.5 h-4.5 relative shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold transform rotate-90 absolute arrow-left" />
-                <i class="el-icon-bottom font-bold transform -rotate-90 absolute arrow-right" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -276,8 +303,14 @@
               <span>{{ column.label }}</span>
 
               <!-- A R R O W  I C O N -->
-              <span class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
 
               <!-- T O O L  T I P -->
@@ -286,7 +319,7 @@
                 effect="light"
                 placement="bottom"
                 :visible-arrow="false"
-                :popper-class="'p-4 shadow-tiny'"
+                popper-class="p-4 shadow-tiny"
               >
                 <div slot="content">
                   <!-- C A M P A I G N  D O N A T I O N S  I N F O  L A B E L-->
@@ -340,9 +373,14 @@
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
               <span>{{ column.label }}</span>
-              <span class="flex items-center p-1 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border w-4.5 h-4.5 relative shadow-tiny border-gray-250">
-                <i class="el-icon-bottom font-bold transform rotate-90 absolute arrow-left" />
-                <i class="el-icon-bottom font-bold transform -rotate-90 absolute arrow-right" />
+              <span
+                class="flex items-center justify-center w-4.5 h-4.5 bg-gray-100 rounded-full ml-2 text-xs cursor-pointer border shadow-tiny border-gray-250"
+                @click="sort(column.property)"
+              >
+                <i
+                  class="font-bold h-2.5"
+                  :class="sortArrowIcon(column.property)"
+                />
               </span>
             </div>
           </template>
@@ -442,7 +480,7 @@ export default class index extends Vue {
   tableData = [
     {
       development: 'Condo Development 001',
-      address: 'some dummy address',
+      address: 'some dummy address 2',
       name: 'Allan, Alexendar',
       age: 29,
       voterHistories: {
@@ -471,17 +509,17 @@ export default class index extends Vue {
         colorClass: 'bg-danger',
         amount: '10000'
       },
-      units: 34,
-      registeredVoters: 43,
+      units: 31,
+      registeredVoters: 90,
       politicalAffiliation: {
-        democrats: 79,
-        republicans: 21
+        democrats: 50,
+        republicans: 50
       }
     },
     {
       development: 'Condo Development 002',
-      address: 'some dummy address',
-      name: 'Allan, Alexendar',
+      address: 'some dummy address 4',
+      name: 'Cllan, Alexendar',
       age: 20,
       voterHistories: {
         generalElections: [
@@ -509,17 +547,17 @@ export default class index extends Vue {
         colorClass: 'bg-blue-600',
         amount: '100000'
       },
-      units: 34,
-      registeredVoters: 43,
+      units: 43,
+      registeredVoters: 6,
       politicalAffiliation: {
-        democrats: 79,
-        republicans: 21
+        democrats: 49,
+        republicans: 51
       }
     },
     {
       development: 'Condo Development 003',
-      address: 'some dummy address',
-      name: 'Allan, Alexendar',
+      address: 'some dummy address 1',
+      name: 'Dllan, Alexendar',
       age: 23,
       voterHistories: {
         generalElections: [
@@ -547,17 +585,17 @@ export default class index extends Vue {
         colorClass: '',
         amount: ''
       },
-      units: 34,
-      registeredVoters: 43,
+      units: 3,
+      registeredVoters: 45,
       politicalAffiliation: {
-        democrats: 79,
-        republicans: 21
+        democrats: 69,
+        republicans: 31
       }
     },
     {
       development: 'Condo Development 004',
-      address: 'some dummy address',
-      name: 'Allan, Alexendar',
+      address: 'some dummy address 3',
+      name: 'Bllan, Alexendar',
       age: 49,
       voterHistories: {
         generalElections: [
@@ -585,14 +623,18 @@ export default class index extends Vue {
         colorClass: 'bg-blue-600',
         amount: '100'
       },
-      units: 34,
-      registeredVoters: 43,
+      units: 14,
+      registeredVoters: 112,
       politicalAffiliation: {
-        democrats: 79,
-        republicans: 21
+        democrats: 27,
+        republicans: 73
       }
     }
   ]
+
+  currentSort = ''
+
+  currentSortDirection = ''
 
   selectedDevelopment = ''
 
@@ -633,6 +675,62 @@ export default class index extends Vue {
   }
 
   /* METHODS */
+  sortArrowIcon (columnProperty: string) {
+    if (columnProperty === this.currentSort) {
+      switch (this.currentSortDirection) {
+        case '':
+          return 'el-icon-minus'
+        case 'asc':
+          return 'el-icon-bottom'
+        case 'desc':
+          return 'el-icon-top'
+      }
+    } else {
+      return 'el-icon-minus'
+    }
+  }
+
+  get sortedTableData () {
+    if (this.currentSortDirection) {
+      const copyArr = [...this.tableData]
+
+      return copyArr.sort((a: any, b: any) => {
+        let modifier = 1
+
+        if (this.currentSortDirection === 'desc') {
+          modifier = -1
+        }
+
+        const currentObjA = this.getSortValue(a)
+
+        const currentObjB = this.getSortValue(b)
+
+        if (currentObjA < currentObjB) {
+          return -1 * modifier
+        }
+        if (currentObjA > currentObjB) {
+          return modifier
+        }
+        return 0
+      })
+    } else {
+      return this.tableData
+    }
+  }
+
+  /* METHODS */
+  getSortValue (obj: any) {
+    if (this.currentSort === 'campaignDonations') {
+      return obj[this.currentSort].amount
+    }
+
+    if (this.currentSort === 'politicalAffiliation') {
+      return obj[this.currentSort].democrats
+    }
+
+    return obj[this.currentSort]
+  }
+
   onAgeFilterClick (AgeFilterItems: FilterItem[]) {
     votersModule.setAgeFilterItems(AgeFilterItems)
   }
@@ -644,24 +742,28 @@ export default class index extends Vue {
   onSuspectRegistrationFilterClick (suspectRegistrationFilterItems: FilterItem[]) {
     votersModule.setSuspectRegistrationFilterItems(suspectRegistrationFilterItems)
   }
+
+  sort (columnProperty: string) {
+    if (columnProperty !== this.currentSort) {
+      this.currentSortDirection = ''
+    }
+
+    this.currentSort = columnProperty
+
+    switch (this.currentSortDirection) {
+      case '':
+        this.currentSortDirection = 'asc'
+        break
+      case 'asc':
+        this.currentSortDirection = 'desc'
+        break
+      case 'desc':
+        this.currentSortDirection = ''
+        break
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-  .voters {
-    .el-table {
-      @apply rounded;
-      .arrow-left {
-        @apply left-0;
-      }
-      .arrow-right {
-        @apply right-0;
-      }
-
-      .info-icon {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  }
 </style>

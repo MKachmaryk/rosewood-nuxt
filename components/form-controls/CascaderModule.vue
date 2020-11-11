@@ -1,9 +1,10 @@
 <template>
   <el-cascader
-    v-model="selectedOptions"
+    ref="elCascader"
+    :value="value"
     :options="options"
     :placeholder="placeholder"
-    @change="onCascaderChange"
+    @input="onCascaderChange"
     @visible-change="visibleChange"
   />
 </template>
@@ -19,9 +20,6 @@ export default class CascaderModule extends Vue {
   @Prop() value!: string[]
   @Prop({ default: 'placeholder' }) placeholder?: string
 
-  /* DATA */
-  selectedOptions = []
-
   /* METHODS */
   onCascaderChange (selectedValue: string[]) {
     this.$emit('input', selectedValue)
@@ -30,6 +28,10 @@ export default class CascaderModule extends Vue {
   visibleChange (isVisible: boolean) {
     if (isVisible) {
       this.$nextTick(() => {
+        if (this.value.length === 0) {
+          (this.$refs.elCascader as any).focusFirstNode()
+        }
+
         const elCascader = document.querySelector('.el-cascader div.is-focus') as HTMLElement
         const elCascaderDropdowns = document.querySelectorAll('.el-cascader__dropdown') as NodeList
 

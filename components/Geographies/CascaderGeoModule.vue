@@ -2,7 +2,7 @@
   <div class="cascader-geo-module relative">
     <!-- C H O S E N  G E O -->
     <div
-      class="flex items-center justify-between py-2 cursor-pointer rounded-lg cascader-geo-module__chosen-geo border border-transparent"
+      class="flex items-center justify-between py-2 cursor-pointer rounded-lg cascader-geo-module__chosen-geo border border-transparent relative z-50"
       :class="isValueChosen ? 'hover:bg-white hover:shadow-tiny hover:border-solid hover:border hover:border-gray-250' : 'bg-white shadow-tiny border border-gray-250'"
       @click="openCascaderModule"
     >
@@ -21,11 +21,11 @@
         <span
           class="ml-5 text-s font-light capitalize w-20"
         >
-          {{ value[0] }}
+          {{ geoType }}
         </span>
 
         <span class="text-s capitalize w-45 pl-4 font-bold">
-          {{ value[1] }}
+          {{ geoData }}
         </span>
       </template>
     </div>
@@ -36,16 +36,16 @@
       class="w-full"
       :value="value"
       :options="options"
-      @input="selectGeo($event)"
+      @input="selectGeo"
     />
 
     <!-- C A S C A D E R  G E O  M O D U L E  D I V I D E R -->
     <div
       v-if="isDivider"
-      class="cascader-geo-module__divider"
+      class="cascader-geo-module__divider z-10"
     >
       <span
-        v-for="item in 12"
+        v-for="item in 16"
         :key="item"
         class="w-px h-px block bg-gray-850 mb-px"
       />
@@ -72,7 +72,6 @@ export default class CascaderGeoModule extends Vue {
 
   @Prop() options!: any[]
   @Prop() value!: string[]
-  @Prop() selected!: boolean
   @Prop({ default: false }) isDivider?: boolean
   @Prop({ default: 'placeholder' }) placeholder?: string
   @Prop() cascaderGeoItemIndex!: number
@@ -81,6 +80,14 @@ export default class CascaderGeoModule extends Vue {
   /* COMPUTED */
   get isValueChosen () {
     return !!this.value.length
+  }
+
+  get geoType () {
+    return this.value[0]
+  }
+
+  get geoData () {
+    return this.value[1]
   }
 
   /* METHODS */
@@ -116,6 +123,7 @@ export default class CascaderGeoModule extends Vue {
     &__divider {
       @apply absolute bottom-0;
       left: 48px;
+      bottom: -4px;
     }
   }
 </style>

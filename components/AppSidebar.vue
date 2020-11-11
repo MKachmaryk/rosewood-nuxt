@@ -22,37 +22,179 @@
         </div>
       </el-input>
 
-      <!-- M E N U  I T E M S -->
-      <nuxt-link
-        v-for="menuItem in menuItems"
-        :key="menuItem.name"
-        :to="{ name: menuItem.routeName }"
-        class="uppercase px-3.75 py-4 font-bold border-b border-gray-300 text-sm text-gray-900"
-        exact
+      <el-menu
+        :unique-opened="true"
+        background-color="#f9f9f9"
+        @open="onOpenSubMenuItemRoute"
+        @close="onCloseSubMenuItemRoute"
       >
-        {{ menuItem.name }}
-      </nuxt-link>
+        <!-- P E O P L E  S U B  M E N U -->
+        <el-submenu
+          index="people"
+          class="border-b border-gray-300"
+        >
+          <template slot="title">
+            <div class="flex items-center justify-between">
+              <span class="uppercase font-bold">People</span>
+
+              <p
+                v-if="openedSubMenuItem === 'people'"
+                class="text-xs cursor-pointer text-purple-100 font-thin"
+              >
+                <i class="el-icon-arrow-left text-xs mr-0" />
+                Back to Search
+              </p>
+            </div>
+          </template>
+
+          <div class="px-3.75 mt-2">
+            <div class="flex justify-between text-xs mb-4">
+              <span class="text-gray-900 font-bold">Employment</span>
+              <span class="text-purple-100">(13)</span>
+            </div>
+
+            <div class="flex justify-between text-xs mb-4">
+              <span class="text-gray-900 font-bold">Real Estate</span>
+              <span class="text-purple-100">(6)</span>
+            </div>
+
+            <p class="text-purple-100 text-xs mb-4">
+              Voter Registrations
+            </p>
+
+            <div class="flex justify-between text-xs mb-4">
+              <span class="text-gray-900 font-bold">Voter History</span>
+              <span class="text-purple-100">(14)</span>
+            </div>
+
+            <div class="flex justify-between text-xs mb-4">
+              <span class="text-gray-900 font-bold">Campaign Contributions</span>
+              <span class="text-purple-100">(3)</span>
+            </div>
+          </div>
+        </el-submenu>
+
+        <!-- O R G A N I Z A T I O N S  S U B  M E N U -->
+        <el-submenu
+          index="organizations"
+          class="border-b border-gray-300"
+        >
+          <template slot="title">
+            <span class="uppercase font-bold">Organizations</span>
+          </template>
+        </el-submenu>
+
+        <!-- G E O G R A P H I E S  S U B  M E N U -->
+        <el-submenu
+          index="geographies"
+          class="border-b border-gray-300"
+        >
+          <template slot="title">
+            <div class="flex items-center justify-between">
+              <span class="uppercase font-bold">geographies</span>
+
+              <p
+                v-if="openedSubMenuItem === 'geographies'"
+                class="text-xs cursor-pointer text-purple-100 font-thin"
+              >
+                <i class="el-icon-arrow-left text-xs mr-0" />
+                Back to Search
+              </p>
+            </div>
+          </template>
+
+          <h2 class="rosewood-sidebar-subitem-label mt-2">
+            refine geo
+          </h2>
+
+          <!-- G E O  F I L T E R I N G  S T A T E -->
+          <CascaderGeoModule
+            v-for="(geoItem, i) in filteringGeoList"
+            :key="`filtering-geo-item-${i}`"
+            v-model="geoItem.selectedOptions"
+            class="px-3.75"
+            placeholder="Please select geo"
+            :options="geoItem.options"
+            :cascader-geo-item-index="i"
+            :filtering-geo-list-length="filteringGeoList.length"
+            :is-divider="filteringGeoList.length - 1 !== i"
+            @item-click="addNewGeoItem"
+          />
+
+          <!-- T O G G L E  L A B E L -->
+          <h2 class="rosewood-sidebar-subitem-label pb-2">
+            view data by
+          </h2>
+
+          <!-- T O G G L E  P E R S O N  /  G E O G R A P H I E S -->
+          <ToggleModule
+            :value="isGeographies"
+            class="px-3.75"
+            active-text="Geographies"
+            inactive-text="Person"
+            @input="toggleChange"
+          />
+
+          <!-- A G E  L I S T -->
+          <SelectItemsListModule
+            class="mt-6"
+            select-list-item-classes="px-3.75 mb-2"
+            label-name="age"
+            :items="ageList"
+            @item-click="onAgeFilterClick"
+          />
+
+          <!-- C A M P A I G N  C O N T R I B U T I O N S  L I S T -->
+          <SelectItemsListModule
+            class="mt-6"
+            select-list-item-classes="px-3.75 mb-2"
+            label-name="campaign contributions"
+            :items="campaignContributions"
+            @item-click="onCampaignContributionsFilterClick"
+          />
+
+          <!-- S U S P E C T  R E G I S T R A T I O N  L I S T -->
+          <SelectItemsListModule
+            class="mt-6"
+            select-list-item-classes="px-3.75 mb-2"
+            label-name="suspect registration"
+            :items="suspectRegistrationList"
+            @item-click="onSuspectRegistrationFilterClick"
+          />
+        </el-submenu>
+      </el-menu>
+
+      <!-- M E N U  I T E M S -->
+      <!--      <nuxt-link-->
+      <!--        v-for="menuItem in menuItems"-->
+      <!--        :key="menuItem.name"-->
+      <!--        :to="{ name: menuItem.routeName }"-->
+      <!--        class="uppercase px-3.75 py-4 font-bold border-b border-gray-300 text-sm text-gray-900"-->
+      <!--        exact-->
+      <!--      >-->
+      <!--        {{ menuItem.name }}-->
+      <!--      </nuxt-link>-->
 
       <!-- G E O G R A P H I E S  L I N K -->
-      <div
-        class="flex items-center justify-between px-3.75 py-4"
-      >
-        <nuxt-link
-          class="uppercase font-bold text-sm text-gray-900"
-          :to="{ name: 'geographies' }"
-        >
-          geographies
-        </nuxt-link>
+      <!--      <div-->
+      <!--        class="flex items-center justify-between px-3.75 py-4"-->
+      <!--      >-->
+      <!--        <nuxt-link-->
+      <!--          class="uppercase font-bold text-sm text-gray-900"-->
+      <!--          :to="{ name: 'geographies' }"-->
+      <!--        >-->
+      <!--          geographies-->
+      <!--        </nuxt-link>-->
 
-        <p class="text-xs cursor-pointer text-purple-100 font-thin">
-          <i class="el-icon-arrow-left text-xs mr-0" />
-          Back to Search
-        </p>
-      </div>
+      <!--        <p class="text-xs cursor-pointer text-purple-100 font-thin">-->
+      <!--          <i class="el-icon-arrow-left text-xs mr-0" />-->
+      <!--          Back to Search-->
+      <!--        </p>-->
+      <!--      </div>-->
 
-      <h2 class="rosewood-sidebar-subitem-label mt-2">
-        refine geo
-      </h2>
+      <!--      <h2 class="rosewood-sidebar-subitem-label mt-2">-->
+      <!--        refine geo-->
+      <!--      </h2>-->
 
       <!-- G E O  F I L T E R I N G  S T A T E -->
       <!--      <SelectGeoModule-->
@@ -84,65 +226,65 @@
       <!--      />-->
 
       <!-- G E O  F I L T E R I N G  S T A T E -->
-      <CascaderGeoModule
-        v-for="(geoItem, i) in filteringGeoList"
-        :key="`filtering-geo-item-${i}`"
-        v-model="geoItem.selectedOptions"
-        class="px-3.75"
-        placeholder="Please select geo"
-        :options="geoItem.options"
-        :cascader-geo-item-index="i"
-        :filtering-geo-list-length="filteringGeoList.length"
-        :is-divider="filteringGeoList.length - 1 !== i"
-        @item-click="addNewGeoItem"
-      />
+      <!--      <CascaderGeoModule-->
+      <!--        v-for="(geoItem, i) in filteringGeoList"-->
+      <!--        :key="`filtering-geo-item-${i}`"-->
+      <!--        v-model="geoItem.selectedOptions"-->
+      <!--        class="px-3.75"-->
+      <!--        placeholder="Please select geo"-->
+      <!--        :options="geoItem.options"-->
+      <!--        :cascader-geo-item-index="i"-->
+      <!--        :filtering-geo-list-length="filteringGeoList.length"-->
+      <!--        :is-divider="filteringGeoList.length - 1 !== i"-->
+      <!--        @item-click="addNewGeoItem"-->
+      <!--      />-->
 
       <!-- T O G G L E  L A B E L -->
-      <h2 class="rosewood-sidebar-subitem-label pb-2">
-        view data by
-      </h2>
+      <!--      <h2 class="rosewood-sidebar-subitem-label pb-2">-->
+      <!--        view data by-->
+      <!--      </h2>-->
 
       <!-- T O G G L E  P E R S O N  /  G E O G R A P H I E S -->
-      <ToggleModule
-        :value="isGeographies"
-        class="px-3.75"
-        active-text="Geographies"
-        inactive-text="Person"
-        @input="toggleChange"
-      />
+      <!--      <ToggleModule-->
+      <!--        :value="isGeographies"-->
+      <!--        class="px-3.75"-->
+      <!--        active-text="Geographies"-->
+      <!--        inactive-text="Person"-->
+      <!--        @input="toggleChange"-->
+      <!--      />-->
 
       <!-- A G E  L I S T -->
-      <SelectItemsListModule
-        class="mt-6"
-        select-list-item-classes="px-3.75 mb-2"
-        label-name="age"
-        :items="ageList"
-        @item-click="onAgeFilterClick"
-      />
+      <!--      <SelectItemsListModule-->
+      <!--        class="mt-6"-->
+      <!--        select-list-item-classes="px-3.75 mb-2"-->
+      <!--        label-name="age"-->
+      <!--        :items="ageList"-->
+      <!--        @item-click="onAgeFilterClick"-->
+      <!--      />-->
 
       <!-- C A M P A I G N  C O N T R I B U T I O N S  L I S T -->
-      <SelectItemsListModule
-        class="mt-6"
-        select-list-item-classes="px-3.75 mb-2"
-        label-name="campaign contributions"
-        :items="campaignContributions"
-        @item-click="onCampaignContributionsFilterClick"
-      />
+      <!--      <SelectItemsListModule-->
+      <!--        class="mt-6"-->
+      <!--        select-list-item-classes="px-3.75 mb-2"-->
+      <!--        label-name="campaign contributions"-->
+      <!--        :items="campaignContributions"-->
+      <!--        @item-click="onCampaignContributionsFilterClick"-->
+      <!--      />-->
 
       <!-- S U S P E C T  R E G I S T R A T I O N  L I S T -->
-      <SelectItemsListModule
-        class="mt-6 border-b border-gray-300 pb-4 mb-6"
-        select-list-item-classes="px-3.75 mb-2"
-        label-name="suspect registration"
-        :items="suspectRegistrationList"
-        @item-click="onSuspectRegistrationFilterClick"
-      />
+      <!--      <SelectItemsListModule-->
+      <!--        class="mt-6 border-b border-gray-300 pb-4 mb-6"-->
+      <!--        select-list-item-classes="px-3.75 mb-2"-->
+      <!--        label-name="suspect registration"-->
+      <!--        :items="suspectRegistrationList"-->
+      <!--        @item-click="onSuspectRegistrationFilterClick"-->
+      <!--      />-->
     </div>
 
     <!-- R O S E L A N D  L O G O -->
     <div
       v-if="!isMobileScreen"
-      class="flex justify-center"
+      class="flex justify-center mt-6"
     >
       <el-image
         class="cursor-pointer mb-5"
@@ -186,24 +328,8 @@ export default class AppSidebar extends Vue {
     menu: ElMenu
   }
 
-  /* HOOKS */
-  created () {
-    // this.state.chosen = this.state.list[0].value
-    // this.county.chosen = this.county.list[0].value
-    // this.city.chosen = this.city.list[0].value
-  }
-
   /* DATA */
-  menuItems = [
-    {
-      name: 'people',
-      routeName: 'people'
-    },
-    {
-      name: 'organizations',
-      routeName: 'organizations'
-    }
-  ]
+  openedSubMenuItem = ''
 
   search = ''
 
@@ -673,6 +799,22 @@ export default class AppSidebar extends Vue {
 
   addNewGeoItem (newGeoItem: FilterGeo) {
     this.filteringGeoList.push(newGeoItem)
+  }
+
+  onOpenSubMenuItemRoute (routeName: string) {
+    this.openedSubMenuItem = routeName
+    this.$router.push({ name: routeName })
+  }
+
+  onCloseSubMenuItemRoute () {
+    this.openedSubMenuItem = ''
+  }
+
+  /* HOOKS */
+  created () {
+    // this.state.chosen = this.state.list[0].value
+    // this.county.chosen = this.county.list[0].value
+    // this.city.chosen = this.city.list[0].value
   }
 }
 </script>
