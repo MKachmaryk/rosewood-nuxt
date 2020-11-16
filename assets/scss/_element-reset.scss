@@ -12,7 +12,6 @@
 }
 
 .el-tooltip__popper[x-placement^=bottom-start] .popper__arrow::after {
-  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-bottom-color: theme('colors.white') !important;
 }
 

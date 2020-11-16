@@ -43,6 +43,7 @@
         :data="sortedTableData"
         style="width: 100%"
         row-class-name="cursor-pointer h-10"
+        cell-class-name="px-5"
       >
         <!-- N A M E  C O L U M N -->
         <el-table-column
@@ -92,7 +93,7 @@
         <el-table-column
           prop="address"
           label="Address"
-          min-width="180"
+          min-width="200"
         >
           <!-- A D D R E S S  C O L U M N  H E A D E R -->
           <template #header="{ column }">
@@ -140,7 +141,7 @@
           v-else
           prop="units"
           label="Units"
-          min-width="100"
+          min-width="130"
         >
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
@@ -271,7 +272,7 @@
           v-else
           prop="registeredVoters"
           label="Registered Voters"
-          min-width="180"
+          min-width="200"
         >
           <template #header="{ column }">
             <div class="flex items-center text-black table-label">
@@ -294,7 +295,7 @@
           v-if="!isGeographies"
           prop="campaignDonations"
           label="Campaign Donations"
-          min-width="220"
+          min-width="240"
         >
           <!-- C A M P A I G N  D O N A T I O N S  C O L U M N  H E A D E R -->
           <template #header="{ column }">

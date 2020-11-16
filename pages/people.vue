@@ -118,14 +118,14 @@
           <el-table-column
             prop="employer"
             label="Employer"
-            min-width="150"
+            min-width="170"
           />
 
           <!-- A D D R E S S  C O L U M N -->
           <el-table-column
             prop="address"
             label="Address"
-            min-width="220"
+            min-width="330"
           />
 
           <!-- J O B  T I T L E -->

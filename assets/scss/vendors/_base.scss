@@ -11,6 +11,10 @@
 
 .el-table {
   @apply rounded;
+  .cell {
+    padding-left: theme('spacing.5') !important;
+    padding-right: theme('spacing.5') !important;
+  }
 }
 
 // info icon
