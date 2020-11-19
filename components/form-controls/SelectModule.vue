@@ -1,7 +1,7 @@
 <template>
   <el-select
     ref="selectModule"
-    class="select-module"
+    :class="rounded ? 'select-module-rounded' : 'select-module'"
     :value="value"
     :placeholder="placeholder"
     :popper-class="popperClassModule"
@@ -34,7 +34,8 @@ export default class SelectModule extends Vue {
   @Prop() value!: string
   @Prop() options!: { label: string, value: string }[]
   @Prop({ default: true }) popperAppendToBody?: boolean
-  @Prop() popperClass?: string
+  @Prop({ default: '' }) popperClass?: string
+  @Prop({ default: true }) rounded?: boolean
 
   /* HOOKS */
   created () {
@@ -56,10 +57,74 @@ export default class SelectModule extends Vue {
   }
 
   get popperClassModule () {
-    return `-mt-4 ${this.popperClass}`
+    return `-mt-4 ${this.popperClass} ${this.rounded ? 'popup-rounded' : ''}`
   }
 }
 </script>
 
 <style lang="scss">
+  .select-module.el-select {
+    .el-input {
+      &--suffix.is-focus .el-input__inner {
+        @apply border-gray-250 rounded-b-none;
+      }
+      &--suffix {
+        @apply text-s;
+        .el-input__inner {
+          @apply border-gray-250 shadow-tiny leading-none h-8;
+        }
+      }
+
+      &__icon {
+        @apply hidden;
+      }
+    }
+  }
+
+  .select-module-rounded.el-select {
+    .el-input {
+      &--suffix.is-focus .el-input__inner {
+        @apply border-gray-250 rounded-xl rounded-b-none;
+      }
+
+      &--suffix {
+        .el-input__inner {
+          @apply rounded-full border-gray-250 shadow-tiny leading-none h-8;
+        }
+      }
+
+      &__icon {
+        @apply hidden;
+      }
+    }
+  }
+
+  // select dropdown
+  .el-select-dropdown.el-popper {
+    @apply mt-0;
+    .popper {
+      &__arrow {
+        @apply hidden;
+      }
+    }
+  }
+  .el-select-dropdown {
+    @apply border-gray-250 shadow-tiny rounded-t-none;
+    &__list {
+      @apply pb-3;
+    }
+    &__item {
+      @apply text-s;
+    }
+  }
+
+  .popup-rounded.el-select-dropdown {
+    @apply border-gray-250 shadow-tiny rounded-xl rounded-t-none;
+    &__list {
+      @apply pb-3;
+    }
+    &__item {
+      @apply text-s;
+    }
+  }
 </style>

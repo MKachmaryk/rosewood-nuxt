@@ -9,10 +9,12 @@ module.exports = {
     extend: {
       colors: {
         indigo: {
-          dye: '#3c505a'
+          500: '#3c505a',
+          550: '#2c3e50'
         },
         gray: {
           100: '#f9f9f9',
+          200: '#f1f1f1',
           250: '#f0f0f0',
           300: '#dcdcdc',
           600: '#a9a9a9',
@@ -27,11 +29,19 @@ module.exports = {
         },
         blue: {
           200: '#6a81a4',
-          600: '#1357cf'
+          600: '#1357cf',
+          850: '#3b5164'
         },
         success: '#0ca14d',
         warming: '#feb52d',
-        danger: '#f42633'
+        red: {
+          150: '#f42633',
+          240: '#c42c00',
+          250: '#c51a00'
+        },
+        green: {
+          650: '#3ca500'
+        }
       },
       fontSize: {
         s: '.8125rem'

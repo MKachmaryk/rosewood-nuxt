@@ -1,10 +1,10 @@
-.rosewood-sidebar-subitem-label {
-  @apply uppercase px-3.75 text-s font-bold text-gray-900;
+html, body, #__nuxt, #__layout {
+  height: 100% !important;
 }
 
 //checkmark
 .icon-checkmark {
-  @apply flex items-center justify-center rounded-full text-danger absolute shadow-tiny;
+  @apply flex items-center justify-center rounded-full text-red-150 absolute shadow-tiny;
   width: 14px;
   height: 14px;
 }
@@ -21,4 +21,45 @@
 .info-icon {
   width: 14px;
   height: 14px;
+}
+
+// account
+.account {
+  @apply flex flex-col items-center bg-gray-100 text-indigo-500;
+  min-height: 100% !important;
+
+  &__logo {
+    @apply flex justify-center mt-12;
+    .el-image__inner {
+      @apply w-40;
+    }
+  }
+
+  .account-input.el-input {
+    @apply border-b border-gray-200 bg-gray-100;
+    .el-input__inner {
+      @apply border-none text-gray-900 text-sm h-12 rounded-none;
+      &::placeholder {
+        @apply text-gray-900 font-bold text-xs;
+      }
+    }
+
+    &:first-child {
+      @apply rounded-t;
+      .el-input__inner {
+        @apply rounded-t;
+      }
+    }
+
+    &:last-child  {
+      @apply border-none rounded-b;
+      .el-input__inner {
+        @apply rounded-b;
+      }
+    }
+  }
+
+  .account-page-label {
+    @apply text-blue-850 font-bold text-lg mb-2;
+  }
 }

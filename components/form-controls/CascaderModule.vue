@@ -43,3 +43,35 @@ export default class CascaderModule extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+  .el-popper.el-cascader {
+    &__dropdown {
+      @apply rounded-lg shadow-tiny border-gray-250 -mt-14.25;
+      .popper__arrow {
+        @apply hidden;
+      }
+      .el-cascader-panel {
+        @apply block;
+        .el-cascader-menu {
+          @apply border-r-0 border-b border-gray-250;
+          .el-cascader-node {
+            @apply text-s text-gray-900;
+            &-node {
+              &__label {
+                @apply px-0;
+              }
+            }
+          }
+          &:last-child {
+            @apply border-b-0;
+          }
+
+          i {
+            @apply hidden;
+          }
+        }
+      }
+    }
+  };
+</style>

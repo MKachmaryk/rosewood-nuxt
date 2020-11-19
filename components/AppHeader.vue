@@ -60,7 +60,7 @@ export default class AppHeader extends Vue {
 
 <style lang="scss">
   .header {
-    background-color: theme('colors.indigo.dye');
+    background-color: theme('colors.indigo.500');
 
     &__logo {
       width: 240px;

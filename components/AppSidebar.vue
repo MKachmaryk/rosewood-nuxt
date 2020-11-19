@@ -825,6 +825,10 @@ export default class AppSidebar extends Vue {
     transition: margin-left .2s ease;
     will-change: margin-left;
 
+    .rosewood-sidebar-subitem-label {
+      @apply uppercase px-3.75 text-s font-bold text-gray-900;
+    }
+
     .sidebar__search.el-input {
       height: 53px !important;
       input {

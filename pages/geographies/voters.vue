@@ -396,8 +396,8 @@
               <span class="mx-1">-</span>
 
               <!-- P O L I T I C A L  A F F I L I A T I O N  R E P U B L I C A N S -->
-              <span class="text-danger">
-                {{ row.politicalAffiliation.republicans }}%
+              <span class="text-red-150">
+                {{ row.politicalAffiliation.republicans }}
               </span>
             </div>
           </template>
@@ -442,7 +442,7 @@ export default class index extends Vue {
     primaries: [
       {
         name: 'r',
-        colorClass: 'bg-danger',
+        colorClass: 'bg-red-150',
         description: 'Voted Republican'
       },
       {
@@ -465,7 +465,7 @@ export default class index extends Vue {
 
   campaignDonationsGeneralInfo = [
     {
-      colorClass: 'bg-danger',
+      colorClass: 'bg-red-150',
       description: 'Donates to Republicans'
     },
     {
@@ -498,7 +498,7 @@ export default class index extends Vue {
         primaries: [
           {
             name: 'r',
-            colorClass: 'bg-danger'
+            colorClass: 'bg-red-150'
           },
           {
             name: 'd',
@@ -507,7 +507,7 @@ export default class index extends Vue {
         ]
       },
       campaignDonations: {
-        colorClass: 'bg-danger',
+        colorClass: 'bg-red-150',
         amount: '10000'
       },
       units: 31,
@@ -536,11 +536,11 @@ export default class index extends Vue {
         primaries: [
           {
             name: 'r',
-            colorClass: 'bg-danger'
+            colorClass: 'bg-red-150'
           },
           {
             name: 'r',
-            colorClass: 'bg-danger'
+            colorClass: 'bg-red-150'
           }
         ]
       },

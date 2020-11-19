@@ -66,19 +66,6 @@ export default class SelectGeo extends Vue {
     selectModule: any
   }
 
-  /* HOOKS */
-  created () {
-    if (process.client) {
-      const self = this
-      window.addEventListener('click', function (e) {
-        // close dropdown when clicked outside
-        if (!self.$el.contains((e as any).target)) {
-          self.$emit('update:selected', false)
-        }
-      })
-    }
-  }
-
   @Prop() optionsList!: any
   @Prop() placeholder?: string
   @Prop() geoPlace?: string
@@ -94,6 +81,19 @@ export default class SelectGeo extends Vue {
 
   openSelectModule () {
     this.$refs.selectModule.$children[0].$el.click()
+  }
+
+  /* HOOKS */
+  created () {
+    if (process.client) {
+      const self = this
+      window.addEventListener('click', function (e) {
+        // close dropdown when clicked outside
+        if (!self.$el.contains((e as any).target)) {
+          self.$emit('update:selected', false)
+        }
+      })
+    }
   }
 }
 </script>

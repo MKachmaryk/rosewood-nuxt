@@ -9,7 +9,7 @@
         John A. Smith
       </p>
       <span
-        class="w-6 h-6 rounded-full bg-danger"
+        class="w-6 h-6 rounded-full bg-red-150"
       />
     </div>
 
@@ -242,7 +242,7 @@ export default class People extends Vue {
       {
         title: 'Political Affiliation',
         value: 'Hard Republican',
-        prefixClass: 'bg-danger',
+        prefixClass: 'bg-red-150',
         info: []
       },
       {

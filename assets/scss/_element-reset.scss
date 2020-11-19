@@ -19,73 +19,6 @@
   border-bottom-color: theme('colors.gray.250') !important;
 }
 
-  //toggle
-.el-switch {
-  .el-switch {
-    &__label * {
-      @apply text-s font-light;
-    }
-
-    &__core {
-      box-shadow: inset 0 0 2px 0 rgba(0,0,0,.35);
-      height: 22px;
-      border-radius: 15px;
-
-      &::after {
-        @apply bg-blue-200;
-        top: 2px;
-        left: 2px;
-      }
-    }
-  }
-
-  &__label.is-active {
-    @apply text-gray-900;
-  }
-}
-
-.el-switch.is-checked .el-switch__core::after {
-  @apply -ml-4.5;
-}
-
-// select
-.el-select {
-  .el-input {
-    &--suffix.is-focus .el-input__inner {
-      @apply border-gray-250 rounded-xl rounded-b-none;
-    }
-    &--suffix {
-      @apply text-s;
-      .el-input__inner {
-        @apply rounded-full border-gray-250 shadow-tiny leading-none h-8;
-      }
-    }
-
-    &__icon {
-      @apply hidden;
-    }
-  }
-}
-
-// select dropdown
-.el-select-dropdown.el-popper {
-  @apply mt-0;
-  .popper {
-    &__arrow {
-      @apply hidden;
-    }
-  }
-}
-.el-select-dropdown {
-  @apply border-gray-250 shadow-tiny rounded-xl rounded-t-none;
-  &__list {
-    @apply pb-3;
-  }
-  &__item {
-    @apply text-s;
-  }
-}
-
 // cascader
 .el-cascader {
   @apply leading-none invisible;
@@ -103,37 +36,6 @@
   }
 }
 
-// cascader dropdown
-.el-popper.el-cascader {
-  &__dropdown {
-    @apply rounded-lg shadow-tiny border-gray-250 -mt-14.25;
-    .popper__arrow {
-      @apply hidden;
-    }
-    .el-cascader-panel {
-      @apply block;
-      .el-cascader-menu {
-        @apply border-r-0 border-b border-gray-250;
-        .el-cascader-node {
-          @apply text-s text-gray-900;
-          &-node {
-            &__label {
-              @apply px-0;
-            }
-          }
-        }
-        &:last-child {
-          @apply border-b-0;
-        }
-
-        i {
-          @apply hidden;
-        }
-      }
-    }
-  }
-};
-
 // sub-menu
 .el-submenu {
   &__title {
@@ -142,5 +44,45 @@
     i.el-icon-arrow-down {
       @apply hidden;
     }
+  }
+}
+
+// steps
+.el-steps {
+  .el-step {
+    &__head.is-finish {
+      @apply text-indigo-500 border-indigo-500;
+      .el-step__icon {
+        @apply bg-indigo-500 border-indigo-500;
+      }
+    }
+
+    .el-step__line {
+      @apply border-indigo-500;
+      top: theme('spacing.8') !important;
+      &-inner {
+        width: 100% !important;
+        border-width: theme('spacing.px') !important;
+      }
+    }
+
+    &__icon {
+      @apply w-16 h-16 border-2;
+    }
+
+    &__main {
+      .el-step__title {
+        @apply text-indigo-500;
+      }
+    }
+
+  }
+  .el-step__head.is-process, .el-step__head.is-wait {
+    .el-step__icon {
+      @apply border-indigo-500;
+    }
+  }
+  .el-step__title.is-process {
+    font-weight: normal !important;
   }
 }
