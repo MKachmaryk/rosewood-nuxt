@@ -44,7 +44,8 @@ module.exports = {
         }
       },
       fontSize: {
-        s: '.8125rem'
+        s: '.8125rem',
+        x: '1.0625rem'
       },
       boxShadow: {
         tiny: '0px 1px 1px 0px rgba(0,0,0,.35)'
@@ -54,7 +55,10 @@ module.exports = {
         3.75: '0.9375rem',
         4.5: '1.125rem',
         14.25: '3.5625rem',
-        45: '11.25rem'
+        45: '11.25rem',
+        52.5: '13.125rem',
+        82.5: '20.625rem',
+        140: '35rem'
       },
       borderRadius: {
         xl: '1rem'

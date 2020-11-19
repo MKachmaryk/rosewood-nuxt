@@ -1,24 +1,24 @@
 <template>
-  <div class="add-plan">
+  <div class="text-blue-850">
     <!-- G E O -->
-    <div class="md:flex md:flex-row lg:flex-row xl:flex-row">
-      <div class="xs:w-full sm:w-full md:w-1/3 md:mr-6">
+    <div class="md:flex">
+      <div class="w-full md:w-52.5 md:mr-5">
         <h3 class="account-page-label">
           About geography pricing
         </h3>
 
-        <p class="text-sm">
+        <p class="text-s">
           Roseland pricing is based on the geography access. The larger the geographic area, the larger the subsription
           fee. You may increase or narrow your geographic coverage at anytime from your profile.
         </p>
       </div>
 
-      <div class="xs:w-full sm:w-full md:w-2/3">
+      <div class="w-full md:w-82.5">
         <h3 class="account-page-label mt-8 md:mt-0">
           Select geography coverage
         </h3>
 
-        <div class="bg-white border border-gray-250 shadow-tiny rounded">
+        <div class="bg-white shadow-tiny rounded">
           <!-- S E L E C T  S T A T E -->
           <div class="flex items-center border-b border-gray-250 px-6 py-4">
             <span class="w-20 text-indigo-500 text-sm font-bold">State</span>
@@ -43,25 +43,25 @@
     </div>
 
     <!-- P L A N -->
-    <div class="md:flex md:flex-row lg:flex-row xl:flex-row mt-8 md:mt-12">
-      <div class="xs:w-full sm:w-full md:w-1/3 md:mr-6">
+    <div class="md:flex mt-8 md:mt-12">
+      <div class="w-full md:w-52.5 md:mr-5">
         <h3 class="account-page-label">
           About basic plan
         </h3>
 
-        <p class="text-sm">
+        <p class="text-s">
           Roseland Basic Plan gives you comprehensive real estate data for your coverage area, including visibiliy into
           who owns what and what their annual taxes are.
         </p>
       </div>
 
-      <div class="xs:w-full sm:w-full md:w-2/3">
+      <div class="w-full md:w-82.5">
         <h3 class="account-page-label mt-8 md:mt-0 capitalize">
           Roseland basic plan
         </h3>
 
-        <div class="bg-white border border-gray-250 shadow-tiny rounded text-center mb-2">
-          <h1 class="text-3xl my-4">
+        <div class="bg-white shadow-tiny rounded text-center mb-2">
+          <h1 class="text-3xl py-4">
             <span class="font-extrabold">$19</span>
             <span class="font-light">/ mon</span>
             <span>*</span>
@@ -84,30 +84,30 @@
           </p>
         </div>
 
-        <span class="text-gray-600 text-xs">* Billet annually as $228</span>
+        <span class="text-gray-600 text-xs">* Billed annually as $228</span>
       </div>
     </div>
 
     <!-- P O L I T I C S  P A C K A G E -->
-    <div class="md:flex md:flex-row lg:flex-row xl:flex-row mt-8 md:mt-12">
-      <div class="xs:w-full sm:w-full md:w-1/3 md:mr-6">
+    <div class="md:flex mt-8 md:mt-12">
+      <div class="w-full md:w-52.5 md:mr-5">
         <h3 class="account-page-label">
           About politics package
         </h3>
 
-        <p>
+        <p class="text-s">
           The politics package gives subscribers access to voter registration information, voting history and campaign
           contributions.
         </p>
       </div>
 
-      <div class="xs:w-full sm:w-full md:w-2/3">
+      <div class="w-full md:w-82.5">
         <h3 class="account-page-label mt-8 md:mt-0 capitalize">
           politics package
         </h3>
 
-        <div class="bg-white border border-gray-250 shadow-tiny rounded text-center mb-2">
-          <h1 class="text-3xl my-4">
+        <div class="bg-white shadow-tiny rounded text-center mb-2">
+          <h1 class="text-3xl py-4">
             <span class="font-extrabold">$49</span>
             <span class="font-light">/ mon</span>
             <span>*</span>
@@ -137,7 +137,7 @@
           />
         </div>
 
-        <span class="text-gray-600 text-xs">* Billet as $588</span>
+        <span class="text-gray-600 text-xs">* Billed as $588</span>
 
         <el-button
           type="text"
@@ -202,7 +202,4 @@ export default class AddPlan extends Vue {
 </script>
 
 <style lang="scss">
-  .add-plan {
-    @apply text-blue-850;
-  }
 </style>

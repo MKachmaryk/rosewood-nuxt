@@ -12,7 +12,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
   // M I D D L E W A R E
   middleware ({ redirect }) {
-    return redirect({ name: 'geographies-voters' })
+    return redirect({ name: 'account-create' })
   }
 })
 export default class Index extends Vue {

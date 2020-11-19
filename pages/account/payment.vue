@@ -1,12 +1,12 @@
 <template>
   <div class="md:flex">
     <!-- P A Y M E N T  D E T A I L S -->
-    <div class="w-full sm:w-full md:w-2/3 lg:w-3/5 md:mr-6">
+    <div class="w-full md:w-82.5 md:mr-5">
       <h3 class="account-page-label mt-8 md:mt-0 capitalize">
         Payment details
       </h3>
 
-      <div class="shadow-tiny rounded border border-gray-200">
+      <div class="shadow-tiny rounded">
         <!-- N A M E -->
         <el-input
           v-model="name"
@@ -89,7 +89,7 @@
         <el-button
           type="text"
           class="my-4 bg-red-250 text-white w-full hover:bg-red-250 hover:text-white py-4 uppercase"
-          @click="$router.push({ name: 'index' })"
+          @click="$router.push({ name: 'geographies-voters' })"
         >
           pay $816
         </el-button>
@@ -104,7 +104,7 @@
     </div>
 
     <!-- Y O U R  O R D E R -->
-    <div class="w-full sm:w-full md:w-1/3 lg:w-2/5">
+    <div class="w-full md:w-52.5">
       <h3 class="account-page-label mt-8 md:mt-0 capitalize">
         Your order
       </h3>
@@ -133,7 +133,7 @@
       <el-button
         type="text"
         class="my-4 bg-red-250 text-white w-full hover:bg-red-250 hover:text-white py-4 uppercase"
-        @click="$router.push({ name: 'index' })"
+        @click="$router.push({ name: 'geographies-voters' })"
       >
         pay $816
       </el-button>
@@ -188,6 +188,6 @@ export default class Payment extends Vue {
 
 <style lang="scss">
   .order-detail-height {
-    height: calc(theme('spacing.12') + 1.5px);
+    height: calc(theme('spacing.12') + theme('spacing.px'));
   }
 </style>

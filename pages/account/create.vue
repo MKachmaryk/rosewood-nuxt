@@ -1,5 +1,5 @@
 <template>
-  <div class="create-account text-gray-900 xs:w-full sm:w-full md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
+  <div class="create-account text-gray-900 w-full sm:w-full p-4">
     <h3 class="account-page-label text-center">
       Join Roseland
     </h3>
@@ -78,5 +78,8 @@ export default class CreateAccount extends Vue {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    @media (min-width: 768px) {
+      width: 390px;
+    }
   }
 </style>

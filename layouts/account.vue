@@ -1,6 +1,6 @@
 <template>
   <div class="account">
-    <div class="w-full sm:w-full lg:w-1/2 h-full p-4">
+    <div class="w-full md:w-140 h-full p-4 md:p-0">
       <!-- R O S E L A N D  L O G O -->
       <el-image
         :src="require('@/assets/images/roseland-logo-black.png')"
@@ -13,12 +13,13 @@
         class="mt-16 mb-12"
       >
         <!-- S T E P  1 -->
-        <el-step title="Account">
+        <el-step>
           <div
             slot="icon"
             :style="{ backgroundImage: 'url(' + require(`@/assets/images/account.png`) + ')'}"
             class="bg-contain bg-no-repeat bg-center w-8 h-8"
           />
+          <span slot="title" class="ml-2 text-s">Account</span>
         </el-step>
 
         <!-- S T E P  2 -->
@@ -31,16 +32,17 @@
             ]"
             class="bg-contain bg-no-repeat bg-center w-8 h-8"
           />
-          <span slot="title" class="ml-4">Plan</span>
+          <span slot="title" class="ml-5 text-s">Plan</span>
         </el-step>
 
         <!-- S T E P  3 -->
-        <el-step title="Payment">
+        <el-step>
           <div
             slot="icon"
             :style="{ backgroundImage: 'url(' + require(`@/assets/images/account-payment.png`) + ')'}"
             class="bg-contain bg-no-repeat bg-center w-8 h-8"
           />
+          <span slot="title" class="text-s ml-2">Payment</span>
         </el-step>
       </el-steps>
 

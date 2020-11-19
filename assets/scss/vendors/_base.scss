@@ -60,6 +60,25 @@ html, body, #__nuxt, #__layout {
   }
 
   .account-page-label {
-    @apply text-blue-850 font-bold text-lg mb-2;
+    @apply text-blue-850 font-bold text-x mb-2;
   }
+
+  .account__container {
+    @media (min-width: 768px) {
+      width: 560px;
+    }
+
+    &-description-block {
+      @media (min-width: 768px) {
+        width: 210px;
+      }
+    }
+
+    &-select-block {
+      @media (min-width: 768px) {
+        width: 330px;
+      }
+    }
+  }
+
 }
